@@ -3,7 +3,7 @@ services:
     environment:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Database password not specified}
   bot:
-    image: botler:latest
+    image: shimbot:latest
     build:
       dockerfile: ./docker/Dockerfile.prod
     restart: unless-stopped

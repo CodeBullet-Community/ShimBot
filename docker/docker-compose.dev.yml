@@ -3,7 +3,7 @@ services:
     environment:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-botler}
   bot:
-    image: botler:dev
+    image: shimbot:dev
     build:
       dockerfile: ./docker/Dockerfile.dev
     environment:
