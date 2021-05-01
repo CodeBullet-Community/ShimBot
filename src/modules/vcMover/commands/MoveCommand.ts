@@ -75,6 +75,16 @@ export default class MoveCommand extends Command<MoveCommandCacheWrapper, Record
       const guildSettings = await this.guildSettingsManager.fetch(context.guild.guild);
       if (!guildSettings.isEnabled) return;
 
+      if (context.parser.remain.length === 0) {
+        await context.sender.sendDetailed(
+          `Move Command`,
+          `Move members into a voice channel they don't have access to with their consent.\n\n` +
+            `This command has the following syntax:\n` +
+            `\`${context.parser.values.prefix}${this.name} (member to move) [(destination channel)]\``
+        );
+        return;
+      }
+
       const member = await context.parser.nextValue(guildMemberParser(context.guild.guild.members));
       if (!member) throw new MissingParameterError(context.sender, 'member to move');
       if (member.user === context.user) context.sender.throwError(`You cannot move yourself.`);
