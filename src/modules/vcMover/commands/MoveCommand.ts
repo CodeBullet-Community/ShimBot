@@ -80,7 +80,7 @@ export default class MoveCommand extends Command<MoveCommandCacheWrapper, Record
           `Move Command`,
           `Move members into a voice channel they don't have access to with their consent.\n\n` +
             `This command has the following syntax:\n` +
-            `\`${context.parser.values.prefix}${this.name} (member to move) [(destination channel)]\``
+            `\`${context.parser.values.prefix}${this.name} <member to move> [destination channel]\``
         );
         return;
       }
