@@ -1,0 +1,4 @@
+model VcMoverGuildSettings {
+  guildId   String  @id @db.VarChar(20)
+  isEnabled Boolean @default(false)
+}

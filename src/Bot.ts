@@ -11,6 +11,7 @@ import Logger, {proxyNativeConsole} from './logger/Logger';
 import MasterLogger from './logger/MasterLogger';
 import CommandModule from './modules/command/CommandModule';
 import ModuleLoader from './modules/ModuleLoader';
+import VcMoverModule from './modules/vcMover/VcMoverModule';
 import {ExitCode, exitWithMessage} from './utils/process';
 
 export default class Bot {
@@ -68,7 +69,10 @@ export default class Bot {
     container.registerInstance(GuildManager, this.client.guilds);
     container.registerInstance(ChannelManager, this.client.channels);
 
-    this.moduleLoader = new ModuleLoader(container, this.masterLogger, [CommandModule]);
+    this.moduleLoader = new ModuleLoader(container, this.masterLogger, [
+      CommandModule,
+      VcMoverModule,
+    ]);
     container.registerInstance(ModuleLoader, this.moduleLoader);
     await this.moduleLoader.initialize();
 
